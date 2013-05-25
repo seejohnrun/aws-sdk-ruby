@@ -39,6 +39,10 @@ module AWS
 
       include Core::Collection::WithLimitAndNextToken
 
+      def initialize
+        @tables = {}
+      end
+
       # Creates a new table.
       #
       #     table = dynamo_db.tables.create('mytable', 25, 25,
@@ -108,7 +112,7 @@ module AWS
       # @param [String] name
       # @return [Table] Returns the table with the given name.
       def [] name
-        Table.new(name, :config => config)
+        @tables[name] ||= Table.new(name, :config => config)
       end
 
       # @api private

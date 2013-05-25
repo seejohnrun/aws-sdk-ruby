@@ -130,7 +130,7 @@ module AWS
     #
     # @return [TableCollection]
     def tables
-      TableCollection.new(:config => config)
+      @tables ||= TableCollection.new(:config => config)
     end
 
     # Request attributes for items spanning multiple tables.  You configure
